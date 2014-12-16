@@ -49,7 +49,7 @@ exports.fn = function(item, params) {
 
             if (collections.colorsProps.indexOf(attr.name) > -1) {
 
-                var val = attr.value.toLowerCase(),
+                var val = attr.value+'',
                     match;
 
                 // Convert color name keyword to long hex

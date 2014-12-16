@@ -31,6 +31,14 @@ var referencesProps = require('./_collections').referencesProps,
  */
 exports.fn = function(data, params) {
 
+  function getIdPrefix() {
+    function s4() {
+      return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+    }
+    return '' + s4() + s4() + s4() + s4();
+  }
+
+    var idPrefix = getIdPrefix();
     var currentID,
         currentIDstring,
         IDs = {},
@@ -124,7 +132,7 @@ exports.fn = function(data, params) {
                 // replace referenced IDs with the minified ones
                 if (params.minify) {
 
-                    currentIDstring = getIDstring(currentID = generateID(currentID), params);
+                    currentIDstring = idPrefix + '_' + getIDstring(currentID = generateID(currentID), params);
                     IDs[k].attr('id').value = currentIDstring;
 
                     referencesIDs[k].forEach(function(attr) {
@@ -141,11 +149,9 @@ exports.fn = function(data, params) {
 
         // remove non-referenced IDs attributes from elements
         if (params.remove) {
-
             for(var ID in IDs) {
-                IDs[ID].removeAttr('id');
+              IDs[ID].removeAttr('id');
             }
-
         }
 
     }
