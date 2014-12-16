@@ -6,7 +6,8 @@ exports.active = false;
 
 exports.params = {
   stroke: true,
-  fill: true
+  fill: true,
+  image: true
 };
 
 var regStrokeProps = /^stroke/,
@@ -24,8 +25,13 @@ regFillProps = /^fill/;
 exports.fn = function(item, params) {
   if (item.isElem()) {
 
+    // remove image elements
+    if (params.image && item.isElem('image')) {
+      return false;
+    }
+
     // remove gradient elements
-    if (params.fill && item.isElem('linearGradient')) {
+    if (params.fill && (item.isElem('linearGradient') || item.isElem('radialGradient'))) {
       return false;
     }
 
