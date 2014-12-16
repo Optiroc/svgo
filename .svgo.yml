@@ -47,3 +47,4 @@ plugins:
   - sortAttrs
   - removeTitle
   - removeDesc
+  - replaceStrokeAndFill
