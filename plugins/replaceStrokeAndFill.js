@@ -11,9 +11,9 @@ exports.params = {
 };
 
 var regStrokeProps = /^stroke/,
-regStrokeWidthProps = /^stroke-width/,
-regStrokeCapsProps = /^stroke-linecap/,
-regStrokeMiterProps = /^stroke-miterlimit/,
+regStrokeWidthProps = /^stroke\-width/,
+regStrokeCapsProps = /^stroke\-linecap/,
+regStrokeMiterProps = /^stroke\-miterlimit/,
 regFillProps = /^fill/;
 
 /**
