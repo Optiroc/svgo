@@ -11,6 +11,8 @@ exports.params = {
 };
 
 var regStrokeProps = /^stroke/,
+regStrokeWidthProps = /^stroke-width/,
+regStrokeCapsProps = /^stroke-linecap/,
 regFillProps = /^fill/;
 
 /**
@@ -49,6 +51,18 @@ exports.fn = function(item, params) {
         if (regStrokeProps.test(attr.name)) { item.removeAttr(attr.name); }
       });
       item.addClass('s');
+    }
+
+    // remove stroke-width, stroke-linecap etc
+    if (params.stroke && item.hasAttr('stroke-width')) {
+      item.eachAttr(function(attr) {
+        if (regStrokeWidthProps.test(attr.name)) { item.removeAttr(attr.name); }
+      });
+    }
+    if (params.stroke && item.hasAttr('stroke-linecap')) {
+      item.eachAttr(function(attr) {
+        if (regStrokeCapsProps.test(attr.name)) { item.removeAttr(attr.name); }
+      });
     }
 
   }
