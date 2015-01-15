@@ -13,6 +13,7 @@ exports.params = {
 var regStrokeProps = /^stroke/,
 regStrokeWidthProps = /^stroke-width/,
 regStrokeCapsProps = /^stroke-linecap/,
+regStrokeMiterProps = /^stroke-miterlimit/,
 regFillProps = /^fill/;
 
 /**
@@ -62,6 +63,11 @@ exports.fn = function(item, params) {
     if (params.stroke && item.hasAttr('stroke-linecap')) {
       item.eachAttr(function(attr) {
         if (regStrokeCapsProps.test(attr.name)) { item.removeAttr(attr.name); }
+      });
+    }
+    if (params.stroke && item.hasAttr('stroke-miterlimit')) {
+      item.eachAttr(function(attr) {
+        if (regStrokeMiterProps.test(attr.name)) { item.removeAttr(attr.name); }
       });
     }
 
