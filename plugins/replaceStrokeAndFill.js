@@ -39,11 +39,15 @@ exports.fn = function(item, params) {
     }
 
     // replace fill
-    if (params.fill && !item.isElem('svg') && !item.hasAttr('fill', 'none')) {
+    if (params.fill && !item.isElem('svg')) {
+      if (item.hasAttr('fill', 'none')) {
+        // no-op
+      } else if (item.hasAttr('fill')) {
+        item.addClass('f');
+      }
       item.eachAttr(function(attr) {
         if (regFillProps.test(attr.name)) { item.removeAttr(attr.name); }
       });
-      item.addClass('f');
     }
 
     // replace stroke
